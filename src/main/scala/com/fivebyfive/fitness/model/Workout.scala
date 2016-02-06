@@ -2,7 +2,11 @@ package com.fivebyfive.fitness.model
 
 import org.joda.time.DateTime
 
-case class Workout(override val routines: Iterable[Routine], date: DateTime) extends WorkoutPlan(routines) {
+case class Workout(routines: Seq[Routine], date: DateTime) {
+  def routinesForExercise(exercise: Exercise): Iterable[Routine] = {
+    routines.filter(r => r.exercise == exercise)
+  }
+
   override def toString: String = {
     val dateString = date.toString("Y-MM-dd")
 
@@ -10,6 +14,5 @@ case class Workout(override val routines: Iterable[Routine], date: DateTime) ext
       |
       |${routines.map(_.toString).mkString("\n")}
     """.stripMargin
-
   }
 }

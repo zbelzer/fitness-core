@@ -40,12 +40,12 @@ class HistorySpec extends UnitSpec {
           Routine(curls, Seq(RepSet(8, Some(15)), RepSet(8, Some(15))))
         )
         val expectedLegs = Seq(
-          Routine(legExtensions, Seq(RepSet(10, Some(20)), RepSet(10, Some(20)))),
-          Routine(legExtensions, Seq(RepSet(10, Some(30)), RepSet(10, Some(30))))
+          Routine(legExtensions, Seq(RepSet(8, Some(20)), RepSet(8, Some(20)))),
+          Routine(legExtensions, Seq(RepSet(8, Some(30)), RepSet(8, Some(30))))
         )
         val expectedSitups = Seq(
-          Routine(sitUps, Seq(RepSet(15), RepSet(15), RepSet(15))),
-          Routine(sitUps, Seq(RepSet(20), RepSet(20), RepSet(20)))
+          Routine(sitUps, Seq(RepSet(15), RepSet(15))),
+          Routine(sitUps, Seq(RepSet(20), RepSet(20)))
         )
 
         result.getOrElse(curls, Nil) shouldBe expectedCurls
