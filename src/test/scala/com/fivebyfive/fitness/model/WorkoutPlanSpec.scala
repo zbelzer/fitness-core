@@ -1,6 +1,7 @@
 package com.fivebyfive.fitness.model
 
 import com.fivebyfive.fitness.UnitSpec
+import com.fivebyfive.fitness.model.Exercise.{SitUps, LegExtensions, BicepCurls}
 
 class WorkoutPlanSpec extends UnitSpec {
   describe("WorkoutPlan") {
@@ -9,9 +10,9 @@ class WorkoutPlanSpec extends UnitSpec {
       val workout = WorkoutPlan.fromCSV(rawData)
 
       workout.routines shouldBe Seq(
-        Routine(Exercise("Bicep Curls"), Seq(RepSet(10, Some(25.0)), RepSet(10, Some(25.0)), RepSet(10, Some(25.0)))),
-        Routine(Exercise("Leg Extensions"), Seq(RepSet(12, Some(40.0)), RepSet(12, Some(40.0)), RepSet(12, Some(40.0)), RepSet(12, Some(40.0)))),
-        Routine(Exercise("Sit Ups"), Seq(RepSet(30, None), RepSet(30, None), RepSet(30, None)))
+        Routine(BicepCurls, Seq(RepSet(10, Some(25.0)), RepSet(10, Some(25.0)), RepSet(10, Some(25.0)))),
+        Routine(LegExtensions, Seq(RepSet(12, Some(40.0)), RepSet(12, Some(40.0)), RepSet(12, Some(40.0)), RepSet(12, Some(40.0)))),
+        Routine(SitUps, Seq(RepSet(30, None), RepSet(30, None), RepSet(30, None)))
       )
     }
   }
