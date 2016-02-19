@@ -19,8 +19,10 @@ sealed abstract class Exercise(
 object Exercise extends Enum[Exercise] {
   val values = findValues
 
-  def randomPermutations(max: Int): Iterator[Seq[Exercise]] = {
-    Random.shuffle(values).permutations.take(max)
+  def randomPermutations(max: Int): Stream[Seq[Exercise]] = {
+    Stream.continually {
+      Random.shuffle(values)
+    }.take(max)
   }
 
   val lowerBody: Seq[Exercise] = {

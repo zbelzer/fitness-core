@@ -1,12 +1,12 @@
 package com.fivebyfive.fitness.model
 
 import com.fivebyfive.fitness.strategy.routine.{MidRepBuilder, RoutineBuilder}
-import com.fivebyfive.fitness.strategy.scoring.{Scoring, EvenGroupDistribution, ScoringAlgorithm}
+import com.fivebyfive.fitness.strategy.scoring.{Scoring, ScoringAlgorithm}
 import com.fivebyfive.fitness.strategy.volume.VolumePredictor
 import org.joda.time.DateTime
 
 case class Program(goal: Option[Goal] = None) {
-  val MAX_PERMUTATIONS = 10
+  val MAX_PERMUTATIONS = 100
   val maxWorkoutDuration = 60 * 30
 
   def nextWorkout(
@@ -36,17 +36,20 @@ case class Program(goal: Option[Goal] = None) {
       None
     }
 
-    Exercise.
+    def scoreWorkout(workout: Workout): ScoredWorkout = {
+      Scoring.run(history, workout)
+    }
+
+    val scoredWorkouts =
+      Exercise.
       randomPermutations(MAX_PERMUTATIONS)
       .flatMap(generateWorkout)
       .map(scoreWorkout)
       .toSeq
-      .sortBy(_.totalScore)
-      .headOption
-  }
 
-  def scoreWorkout(workout: Workout): ScoredWorkout = {
-    Scoring.run(workout)
+     scoredWorkouts
+      .sortBy(_.totalScore)(Ordering[Double].reverse)
+      .headOption
   }
 
   def defaultRoutine(exercise: Exercise): Routine = {

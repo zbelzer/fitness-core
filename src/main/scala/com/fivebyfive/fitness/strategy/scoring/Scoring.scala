@@ -1,18 +1,19 @@
 package com.fivebyfive.fitness.strategy.scoring
 
-import com.fivebyfive.fitness.model.{Workout, ScoredWorkout}
+import com.fivebyfive.fitness.model.{History, Workout, ScoredWorkout}
+import com.fivebyfive.fitness.strategy.scoring.algorithms.{RepeatedExercises, EvenGroupDistribution}
 
 object Scoring {
   val algorithms = Seq(
-    EvenGroupDistribution
+    EvenGroupDistribution,
+    RepeatedExercises
   )
 
-  def run(workout: Workout): ScoredWorkout = {
+  def run(history: History, workout: Workout): ScoredWorkout = {
     val scores = algorithms.map { alg =>
-      alg.score(workout)
+      alg.score(history, workout)
     }
 
-    ScoredWorkout(workout , scores)
-
+    ScoredWorkout(workout, scores)
   }
 }

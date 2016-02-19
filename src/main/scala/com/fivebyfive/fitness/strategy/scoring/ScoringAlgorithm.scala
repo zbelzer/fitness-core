@@ -1,7 +1,7 @@
 package com.fivebyfive.fitness.strategy.scoring
 
-import com.fivebyfive.fitness.model.Workout
+import com.fivebyfive.fitness.model.{History, Workout}
 
 trait ScoringAlgorithm {
-  def score(workout: Workout): Score
+  def score(history: History, workout: Workout): Score
 }

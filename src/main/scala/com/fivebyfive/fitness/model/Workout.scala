@@ -7,6 +7,8 @@ import org.joda.time.DateTime
 import scala.concurrent.duration.Duration
 
 case class Workout(routines: Seq[Routine], date: DateTime) {
+  lazy val exercises = routines.map(_.exercise)
+
   def routineForExercise(exercise: Exercise): Option[Routine] = {
     routines.find(r => r.exercise == exercise)
   }
