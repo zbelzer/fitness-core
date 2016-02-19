@@ -1,6 +1,7 @@
 package com.fivebyfive.fitness.model
 
 import com.fivebyfive.fitness.strategy.routine.{MidRepBuilder, RoutineBuilder}
+import com.fivebyfive.fitness.strategy.scoring.{Scoring, EvenGroupDistribution, ScoringAlgorithm}
 import com.fivebyfive.fitness.strategy.volume.VolumePredictor
 import org.joda.time.DateTime
 
@@ -12,7 +13,7 @@ case class Program(goal: Option[Goal] = None) {
       date: DateTime,
       history: History,
       routineBuilder: RoutineBuilder = new MidRepBuilder
-  ): Option[Workout] = {
+  ): Option[ScoredWorkout] = {
     val routineHistory = history.volumeHistoryByExercise
 
     def generateWorkout(exerciseList: Seq[Exercise]): Option[Workout] = {
@@ -22,9 +23,7 @@ case class Program(goal: Option[Goal] = None) {
         val latestRoutineForExercise = history.latestRoutine(exercise).getOrElse(defaultRoutine(exercise))
 
         val data = routineHistory.getOrElse(exercise, Seq((date, latestRoutineForExercise.volume)))
-        println(s"Data for $exercise is $data")
         val nextVolume = VolumePredictor.next(data, date)
-        println(s"Next volume for $date is $nextVolume")
 
         val nextRoutine = routineBuilder.buildRoutine(latestRoutineForExercise, nextVolume)
         currentRoutines :+= nextRoutine
@@ -42,13 +41,12 @@ case class Program(goal: Option[Goal] = None) {
       .flatMap(generateWorkout)
       .map(scoreWorkout)
       .toSeq
-      .sortBy(_._2)
+      .sortBy(_.totalScore)
       .headOption
-      .map(_._1)
   }
 
-  def scoreWorkout(workout: Workout) = {
-    workout -> 1
+  def scoreWorkout(workout: Workout): ScoredWorkout = {
+    Scoring.run(workout)
   }
 
   def defaultRoutine(exercise: Exercise): Routine = {

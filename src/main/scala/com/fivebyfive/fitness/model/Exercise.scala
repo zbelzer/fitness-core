@@ -86,7 +86,7 @@ object Exercise extends Enum[Exercise] {
     )
   )
 
-  case object CableNeckExtension extends Exercise(
+  case object CableNeckExtensions extends Exercise(
     Map(
       Splenius -> 0.80,
       TrapeziusUpper -> 0.05,
@@ -96,7 +96,7 @@ object Exercise extends Enum[Exercise] {
     )
   )
 
-  case object AssistedTricepsDip extends Exercise(
+  case object AssistedTricepsDips extends Exercise(
     Map(
       TricepsBrachii -> 0.70,
       DeltoidAnterior -> 0.05,
@@ -108,23 +108,85 @@ object Exercise extends Enum[Exercise] {
     )
   )
 
-  case object CloseGripBenchPress extends Exercise(
+  case object Hyperextensions extends Exercise(
     Map(
-      TricepsBrachii -> 0.80,
-      DeltoidAnterior -> 0.10,
-      PectoralisMajor -> 0.10
+      Hamstrings -> 0.70,
+      ErectorSpinae -> 0.10,
+      GluteusMaximus -> 0.10,
+      Adductors -> 0.10
     )
   )
 
-  case object WristCurl extends Exercise(
+  case object ReverseLunges extends Exercise(
+    Map(
+      Quadriceps -> 0.70,
+      GluteusMaximus -> 0.10,
+      Adductors -> 0.10,
+      Soleus -> 0.10
+    )
+  )
+
+  case object CloseGripBenchPress extends Exercise(
+    Map(
+      TricepsBrachii -> 0.70,
+      DeltoidAnterior -> 0.10,
+      PectoralisMajor -> 0.20
+    )
+  )
+
+  case object PushUps extends Exercise(
+    Map(
+      PectoralisMajor -> 0.80,
+      DeltoidAnterior -> 0.10,
+      TricepsBrachii -> 0.10
+    )
+  )
+
+  case object BenchPress extends Exercise(
+    Map(
+      PectoralisMajor -> 0.80,
+      DeltoidAnterior -> 0.10,
+      TricepsBrachii -> 0.10
+    )
+  )
+
+  case object ShoulderPress extends Exercise(
+    Map(
+      DeltoidAnterior -> 0.76,
+      DeltoidLateral -> 0.04,
+      Supraspinatus -> 0.04,
+      TricepsBrachii -> 0.04,
+      TrapeziusMiddle -> 0.04,
+      TrapeziusLower -> 0.04,
+      SerratusAnterior -> 0.04
+    )
+  )
+
+  case object ArnoldPress extends Exercise(
+    Map(
+      DeltoidAnterior -> 0.76,
+      DeltoidLateral -> 0.04,
+      Supraspinatus -> 0.04,
+      TricepsBrachii -> 0.04,
+      TrapeziusMiddle -> 0.04,
+      TrapeziusLower -> 0.04,
+      SerratusAnterior -> 0.04
+    )
+  )
+
+  case object TricepExtensions extends Exercise(
+    Map(TricepsBrachii -> 1.0)
+  )
+
+  case object WristCurls extends Exercise(
     Map(WristFlexors -> 1.0)
   )
 
-  case object ReverseWristCurl extends Exercise(
+  case object ReverseWristCurls extends Exercise(
     Map(WristExensors -> 1.0)
   )
 
-  case object Squat extends Exercise(
+  case object Squats extends Exercise(
     Map(
       GluteusMaximus -> 0.70,
       Quadriceps -> 0.20,

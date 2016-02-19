@@ -1,14 +1,19 @@
 package com.fivebyfive.fitness.model
 
+import java.util.concurrent.TimeUnit
+
 import org.joda.time.DateTime
+
+import scala.concurrent.duration.Duration
 
 case class Workout(routines: Seq[Routine], date: DateTime) {
   def routineForExercise(exercise: Exercise): Option[Routine] = {
     routines.find(r => r.exercise == exercise)
   }
 
-  lazy val duration: Int = {
-    routines.map(_.duration).sum
+  lazy val duration: Duration = {
+    val sum = routines.map(_.duration).sum
+    Duration(sum, TimeUnit.SECONDS)
   }
 
   lazy val routinesByExercise: Map[Exercise, Routine] = {
