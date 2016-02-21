@@ -1,6 +1,6 @@
 package com.fivebyfive.fitness.strategy.routine
 
-class LowRepBuilder extends RoutineBuilder {
+class StrengthBuilder extends RoutineBuilder {
   val numSets = 5
   val numReps = 5
 }

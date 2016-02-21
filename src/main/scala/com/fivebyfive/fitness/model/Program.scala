@@ -1,6 +1,6 @@
 package com.fivebyfive.fitness.model
 
-import com.fivebyfive.fitness.strategy.routine.{MidRepBuilder, RoutineBuilder}
+import com.fivebyfive.fitness.strategy.routine.{HypertrophicBuilder, RoutineBuilder}
 import com.fivebyfive.fitness.strategy.scoring.{Scoring, ScoringAlgorithm}
 import com.fivebyfive.fitness.strategy.volume.VolumePredictor
 import org.joda.time.DateTime
@@ -12,7 +12,7 @@ case class Program(goal: Option[Goal] = None) {
   def nextWorkout(
       date: DateTime,
       history: History,
-      routineBuilder: RoutineBuilder = new MidRepBuilder
+      routineBuilder: RoutineBuilder = new HypertrophicBuilder
   ): Option[ScoredWorkout] = {
     val routineHistory = history.volumeHistoryByExercise
 

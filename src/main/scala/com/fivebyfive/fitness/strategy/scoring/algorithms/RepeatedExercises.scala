@@ -9,7 +9,7 @@ import scala.concurrent.duration.Duration
 
 object RepeatedExercises extends ScoringAlgorithm {
   import TimeUnit._
-  
+
   val DEFAULT_SCORE = 3.0
   val NO_SCORE = 0.0
 
