@@ -2,9 +2,10 @@ name := """fitness-ui"""
 
 version := "1.0-SNAPSHOT"
 
-lazy val ui = (project in file(".")).enablePlugins(PlayScala)
-
 scalaVersion := "2.11.7"
+
+lazy val core = project in file("../fitness-core")
+lazy val ui = (project in file(".")).enablePlugins(PlayScala).dependsOn(core)
 
 libraryDependencies ++= Seq(
   jdbc,
