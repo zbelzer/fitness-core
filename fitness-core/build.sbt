@@ -4,6 +4,8 @@ version := "1.0-SNAPSHOT"
 
 scalaVersion := "2.11.7"
 
+lazy val core = project in file(".")
+
 initialCommands in console := "import com.fivebyfive.fitness.model._;"
 initialCommands in console += "import com.fivebyfive.fitness.strategy._;"
 initialCommands in console += "import com.fivebyfive.fitness.application._;"

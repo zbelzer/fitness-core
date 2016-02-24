@@ -5,7 +5,7 @@ import com.fivebyfive.fitness.strategy.scoring.{Score, ScoringAlgorithm}
 
 object EvenGroupDistribution extends ScoringAlgorithm {
   def score(history: History, workout: Workout): Score = {
-    val groups: Double = workout.routines.map(_.exercise.muscleGroup).size
+    val groups: Double = workout.routines.map(_.exercise.muscleGroup).distinct.size
     val allGroups: Double = MuscleGroup.values.size
 
     Score(EvenGroupDistribution, groups / allGroups)

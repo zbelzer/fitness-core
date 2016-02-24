@@ -1,5 +1,6 @@
 package com.fivebyfive.fitness.model
 
+import com.fivebyfive.fitness.Util.Levenshtein
 import com.fivebyfive.fitness.model.Muscle._
 import com.fivebyfive.fitness.model.MuscleGroup.{Core, LowerBody, UpperBody}
 import enumeratum._
@@ -18,6 +19,17 @@ sealed abstract class Exercise(
 
 object Exercise extends Enum[Exercise] {
   val values = findValues
+
+  def lookup(name: String): Exercise = {
+    withNameInsensitiveOption(name).getOrElse {
+      val guess = values.minBy { v => Levenshtein.distance(v.entryName, name) }
+      if (Levenshtein.distance(guess.entryName, name) <=   3) {
+        guess
+      } else {
+        throw new RuntimeException(s"Could not find a match for $name guessed $guess")
+      }
+    }
+  }
 
   def randomPermutations(max: Int): Stream[Seq[Exercise]] = {
     Stream.continually {
@@ -63,6 +75,38 @@ object Exercise extends Enum[Exercise] {
       RectusFemoris -> 0.06,
       Sartorius -> 0.06,
       Obliques -> 0.06
+    )
+  )
+
+  case object Crunches extends Exercise(
+    Map(
+      RectusAbdominis -> 0.90,
+      Obliques -> 0.10
+    )
+  )
+
+  case object FloorRearNeckBridge extends Exercise(
+    muscleMap = Map(
+      Splenius -> 0.74,
+      TrapeziusUpper -> 0.06,
+      LevatorScapulae -> 0.06,
+      Sternocleidomastoid -> 0.06,
+      ErectorSpinae -> 0.06,
+      GluteusMaximus -> 0.06,
+      Quadriceps -> 0.06
+    ),
+    difficulty = Some(1)
+  )
+
+  case object WallRearNeckBridge extends Exercise(
+    Map(
+      Splenius -> 0.74,
+      TrapeziusUpper -> 0.06,
+      LevatorScapulae -> 0.06,
+      Sternocleidomastoid -> 0.06,
+      ErectorSpinae -> 0.06,
+      GluteusMaximus -> 0.06,
+      Quadriceps -> 0.06
     )
   )
 
@@ -207,7 +251,7 @@ object Exercise extends Enum[Exercise] {
     )
   )
 
-  case object Twists extends Exercise(
+  case object StandingTwist extends Exercise(
     Map(
       Obliques -> 0.72,
       TensorFasciaeLatae -> 0.04,
@@ -220,10 +264,57 @@ object Exercise extends Enum[Exercise] {
     )
   )
 
+  case object RussianTwist extends Exercise(
+    Map(
+      Obliques -> 0.60,
+      HipExternalRotators -> 0.10,
+      Iliopsoas -> 0.10,
+      QuadratusLumborum -> 0.10,
+      ErectorSpinae -> 0.10
+    )
+  )
+
   case object StandingCalfRaise extends Exercise(
     Map(
       Gastrocnemius -> 0.80,
       Soleus -> 0.20
+    )
+  )
+
+  case object SeatedCalfPress extends Exercise(
+    Map(
+      Gastrocnemius -> 0.80,
+      Soleus -> 0.20
+    )
+  )
+
+  case object StandingMiliartyPress extends Exercise(
+    Map(
+      DeltoidAnterior -> 0.64,
+      PectoralisMajor -> 0.06,
+      TricepsBrachii -> 0.06,
+      DeltoidLateral -> 0.06,
+      TrapeziusMiddle -> 0.06,
+      TrapeziusLower -> 0.06,
+      SerratusAnterior -> 0.06
+    )
+  )
+
+  case object Pulldown extends Exercise(
+    Map(
+      LatissimusDorsi -> 0.74,
+      Brachialis -> 0.02,
+      Brachioradialis -> 0.02,
+      BicepsBrachii -> 0.02,
+      TeresMajor -> 0.02,
+      DeltoidPosterior -> 0.02,
+      Infraspinatus -> 0.02,
+      TeresMinor -> 0.02,
+      Rhomboids -> 0.02,
+      LevatorScapulae -> 0.02,
+      TrapeziusLower -> 0.02,
+      TrapeziusMiddle -> 0.02,
+      PectoralisMinor -> 0.02
     )
   )
 

@@ -13,7 +13,7 @@ class RepeatedExercisesSpec extends UnitSpec {
       it("scores a completely unique workout with 1") {
         val workout = Workout(Seq(
           Routine(DragCurls, Seq(RepSet(8, Some(22.5)), RepSet(8, Some(22.5)))),
-          Routine(Twists, Seq(RepSet(10, Some(40)), RepSet(10, Some(40)))),
+          Routine(StandingTwist, Seq(RepSet(10, Some(40)), RepSet(10, Some(40)))),
           Routine(PullUps, Seq(RepSet(30), RepSet(30), RepSet(30)))
         ), new DateTime("2016-01-30"))
 

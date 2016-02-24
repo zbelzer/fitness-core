@@ -29,7 +29,7 @@ object WorkoutPlan {
     val routines =
       results.groupBy(_.exerciseName).map { case (exerciseName, rows) =>
         val name = exerciseName.replaceAll(" ", "")
-        Routine(Exercise.withNameInsensitive(name), rows.map { r => RepSet(r.reps, r.weight) })
+        Routine(Exercise.lookup(name), rows.map { r => RepSet(r.reps, r.weight) })
       }
 
     new WorkoutPlan(routines)
