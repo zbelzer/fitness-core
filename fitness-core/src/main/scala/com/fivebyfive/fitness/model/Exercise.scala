@@ -86,7 +86,7 @@ object Exercise extends Enum[Exercise] {
   )
 
   case object FloorRearNeckBridge extends Exercise(
-    muscleMap = Map(
+     Map(
       Splenius -> 0.74,
       TrapeziusUpper -> 0.06,
       LevatorScapulae -> 0.06,
@@ -94,8 +94,7 @@ object Exercise extends Enum[Exercise] {
       ErectorSpinae -> 0.06,
       GluteusMaximus -> 0.06,
       Quadriceps -> 0.06
-    ),
-    difficulty = Some(1)
+    )
   )
 
   case object WallRearNeckBridge extends Exercise(

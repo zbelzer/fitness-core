@@ -1,10 +1,9 @@
-package com.fivebyfive.fitness.strategy.volume.scoring.algorithms
+package com.fivebyfive.fitness.strategy.scoring.algorithms
 
 import com.fivebyfive.fitness.UnitSpec
 import com.fivebyfive.fitness.model.Exercise._
-import com.fivebyfive.fitness.model.{Workout, RepSet, Routine, History}
+import com.fivebyfive.fitness.model.{History, RepSet, Routine, Workout}
 import com.fivebyfive.fitness.strategy.scoring.Score
-import com.fivebyfive.fitness.strategy.scoring.algorithms.RepeatedExercises
 import org.joda.time.DateTime
 
 class RepeatedExercisesSpec extends UnitSpec {
