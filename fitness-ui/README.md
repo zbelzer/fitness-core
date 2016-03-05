@@ -1,2 +1,0 @@
-# fitness
-Workout Generation App
