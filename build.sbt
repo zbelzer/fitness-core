@@ -1,5 +1,7 @@
-name := "fitness-core"
+import sbt.inc.Analysis
 
+name := "fitness-core"
+organization := "com.fivebyfive"
 version := "1.0-SNAPSHOT"
 
 scalaVersion := "2.11.7"
@@ -10,10 +12,13 @@ initialCommands in console := "import com.fivebyfive.fitness.model._;"
 initialCommands in console += "import com.fivebyfive.fitness.strategy._;"
 initialCommands in console += "import com.fivebyfive.fitness.application._;"
 
-libraryDependencies += "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test"
-libraryDependencies += "com.github.nscala-time" %% "nscala-time" % "2.6.0"
-libraryDependencies += "com.nrinaudo" %% "tabulate" % "0.1.7"
-libraryDependencies += "org.apache.commons" % "commons-math3" % "3.3"
-libraryDependencies += "com.github.wookietreiber" %% "scala-chart" % "latest.integration"
-libraryDependencies += "com.beachape" %% "enumeratum" % "1.3.7"
-libraryDependencies += "com.github.nscala-time" %% "nscala-time" % "2.6.0"
+libraryDependencies ++= Seq(
+  "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test",
+  "com.github.nscala-time" %% "nscala-time" % "2.6.0",
+  "com.nrinaudo" %% "tabulate" % "0.1.7",
+  "org.apache.commons" % "commons-math3" % "3.3",
+  "com.github.wookietreiber" %% "scala-chart" % "latest.integration",
+  "com.beachape" %% "enumeratum" % "1.3.7",
+  "com.github.nscala-time" %% "nscala-time" % "2.6.0",
+  "io.backchat.inflector" %% "scala-inflector" % "1.3.5"
+)

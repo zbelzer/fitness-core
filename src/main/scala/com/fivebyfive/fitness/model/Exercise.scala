@@ -4,12 +4,15 @@ import com.fivebyfive.fitness.Util.Levenshtein
 import com.fivebyfive.fitness.model.Muscle._
 import com.fivebyfive.fitness.model.MuscleGroup.{Core, LowerBody, UpperBody}
 import enumeratum._
+import mojolly.inflector.Inflector
 
 import scala.util.Random
 
 sealed abstract class Exercise(
-  val muscleMap: Map[Muscle, Double]
+    val muscleMap: Map[Muscle, Double]
 ) extends EnumEntry {
+  val prettyName = Inflector.titleize(getClass.getSimpleName.replace("$", ""))
+
   val muscleGroup: MuscleGroup = {
     muscleMap.groupBy(_._1.group).map { case (group, thing) =>
       (group, thing.values.sum)
