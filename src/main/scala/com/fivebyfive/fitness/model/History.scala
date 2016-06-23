@@ -62,7 +62,8 @@ object History {
         val routines =
           rows.groupBy(_.exerciseName).map { case (exerciseName, rows) =>
             val name = exerciseName.replaceAll(" ", "")
-            Routine(Exercise.lookup(name), rows.map { r => RepSet(r.reps, r.weight) })
+            val sets = rows.map { r => RepSet(r.reps, r.weight) }.filter(_.weight.getOrElse(0.0) >= 0.0)
+            Routine(Exercise.lookup(name), sets)
           }
 
         Workout(routines.toSeq, new DateTime(date))

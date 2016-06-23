@@ -15,8 +15,8 @@ object VolumePredictor {
   def next(data: Iterable[(DateTime, Double)], date: DateTime): Double = {
     val observations = new WeightedObservedPoints
 
-    data.foreach{ case (date, volume) =>
-      observations.add(dateToDouble(date), volume)
+    data.foreach{ case (observationDate, volume) =>
+      observations.add(dateToDouble(observationDate), volume)
     }
 
     val fun = new PolynomialFunction(fitter.fit(observations.toList))

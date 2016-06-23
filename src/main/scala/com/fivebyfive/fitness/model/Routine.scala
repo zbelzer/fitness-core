@@ -4,6 +4,8 @@ case class Routine(exercise: Exercise, sets: Seq[RepSet]) {
   val TIME_PER_REP = 4
   val REST_INTERVAL = 60
 
+  lazy val inverted = sets.forall(_.inverted)
+
   lazy val volume: Double = {
     sets.map { s => s.weight.map(_ * s.reps).getOrElse(s.reps.toDouble) }.sum
   }

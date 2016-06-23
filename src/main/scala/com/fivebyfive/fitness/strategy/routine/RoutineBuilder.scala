@@ -10,8 +10,10 @@ trait RoutineBuilder {
   def numReps: Int
 
   def buildRoutine(previousRoutine: Routine, volume: Double): Routine = {
+    require(volume > 0 || previousRoutine.inverted)
+
     val sets =
-      if (previousRoutine.weightedRoutine && volume > 0) {
+      if (previousRoutine.weightedRoutine && volume.abs > 0) {
         val weight = volume / numSets / numReps
 
         Range(0, numSets).map { s => RepSet(numReps, Some(toHalf(weight))) }

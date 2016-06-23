@@ -12,7 +12,8 @@ case class Program(goal: Option[Goal] = None) {
   def nextWorkout(
       date: DateTime,
       history: History,
-      routineBuilder: RoutineBuilder = new HypertrophicBuilder
+      routineBuilder: RoutineBuilder = new HypertrophicBuilder,
+      seed: Option[Long] = None
   ): Option[ScoredWorkout] = {
     val routineHistory = history.volumeHistoryByExercise
 
@@ -40,12 +41,12 @@ case class Program(goal: Option[Goal] = None) {
       Scoring.run(history, workout)
     }
 
+    val exercises = Exercise.randomPermutations(MAX_PERMUTATIONS, seed)
+
     val scoredWorkouts =
-      Exercise.
-      randomPermutations(MAX_PERMUTATIONS)
+      exercises
       .flatMap(generateWorkout)
       .map(scoreWorkout)
-      .toSeq
 
      scoredWorkouts
       .sortBy(_.totalScore)(Ordering[Double].reverse)

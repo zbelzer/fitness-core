@@ -5,7 +5,9 @@ import java.net.URL
 import tabulate.RowDecoder
 import tabulate.ops._
 
-class WorkoutPlan(val routines: Iterable[Routine]) {
+import scala.concurrent.duration.Duration
+
+class WorkoutPlan(val routines: Iterable[Routine]) extends WorkoutLike {
   def routinesForExercise(exercise: Exercise): Iterable[Routine] = {
     routines.filter(r => r.exercise == exercise)
   }

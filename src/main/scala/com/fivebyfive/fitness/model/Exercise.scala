@@ -34,9 +34,11 @@ object Exercise extends Enum[Exercise] {
     }
   }
 
-  def randomPermutations(max: Int): Stream[Seq[Exercise]] = {
+  def randomPermutations(max: Int, seed: Option[Long]): Stream[Seq[Exercise]] = {
+    val random = seed.map { s => new Random(s) }.getOrElse(Random)
+
     Stream.continually {
-      Random.shuffle(values)
+      random.shuffle(values)
     }.take(max)
   }
 
@@ -144,6 +146,22 @@ object Exercise extends Enum[Exercise] {
     )
   )
 
+  case object DumbellBentOverRow extends Exercise(
+    Map(
+      TrapeziusMiddle -> 0.10,
+      TrapeziusLower -> 0.10,
+      Rhomboids -> 0.10,
+      LatissimusDorsi -> 0.10,
+      TeresMajor -> 0.10,
+      DeltoidPosterior -> 0.10,
+      Infraspinatus -> 0.10,
+      TeresMinor -> 0.10,
+      Brachialis -> 0.10,
+      Brachioradialis -> 0.05,
+      PectoralisMajor -> 0.05
+    )
+  )
+
   case object AssistedTricepsDips extends Exercise(
     Map(
       TricepsBrachii -> 0.70,
@@ -226,6 +244,10 @@ object Exercise extends Enum[Exercise] {
     Map(TricepsBrachii -> 1.0)
   )
 
+  case object CablePushdown extends Exercise(
+    Map(TricepsBrachii -> 1.0)
+  )
+
   case object WristCurls extends Exercise(
     Map(WristFlexors -> 1.0)
   )
@@ -240,6 +262,24 @@ object Exercise extends Enum[Exercise] {
       Quadriceps -> 0.20,
       Adductors -> 0.05,
       Soleus -> 0.05
+    )
+  )
+
+  case object MachineSquats extends Exercise(
+    Map(
+      GluteusMaximus -> 0.70,
+      Quadriceps -> 0.20,
+      Adductors -> 0.05,
+      Soleus -> 0.05
+    )
+  )
+
+  case object SeatedPectoralFly extends Exercise(
+    Map(
+      PectoralisMajor -> 0.70,
+      BicepsBrachii -> 0.10,
+      PectoralisMinor -> 0.10,
+      SerratusAnterior -> 0.10
     )
   )
 
