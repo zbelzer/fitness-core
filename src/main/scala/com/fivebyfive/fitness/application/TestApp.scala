@@ -6,12 +6,13 @@ import com.fivebyfive.fitness.model._
 import com.fivebyfive.fitness.strategy.scoring.Scoring
 import com.fivebyfive.fitness.strategy.scoring.algorithms.{EvenGroupDistribution, IgnoreExercises, RepeatedExercises}
 import org.joda.time.DateTime
+import org.apache.commons.io.IOUtils
 
 object TestApp extends App {
   println("Loading history from CSV")
 
-  val path = getClass.getResource("/belzer.csv")
-  val history = History.fromCSV(path)
+  val stream = getClass.getResourceAsStream("/belzer.csv")
+  val history = History.fromCSV(IOUtils.toByteArray(stream))
 
   println(s"Found ${history.workouts.size} workouts")
   println

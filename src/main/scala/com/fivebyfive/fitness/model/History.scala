@@ -1,7 +1,5 @@
 package com.fivebyfive.fitness.model
 
-import java.net.URL
-
 import com.github.nscala_time.time.OrderingImplicits.DateTimeOrdering
 import org.joda.time.DateTime
 import tabulate._
@@ -51,7 +49,7 @@ case class History(workouts: Iterable[Workout]) {
 object History {
   implicit val codec = scala.io.Codec.ISO8859
 
-  def fromCSV(data: URL): History = {
+  def fromCSV(data: Array[Byte]): History = {
     case class Row(date: String, exerciseName: String, reps: Int, weight: Option[Double] = None)
     implicit val rowDecoder = RowDecoder.decoder4(Row.apply)(0, 1, 2, 3)
 

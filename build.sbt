@@ -1,5 +1,3 @@
-import sbt.inc.Analysis
-
 name := "fitness-core"
 organization := "com.fivebyfive"
 version := "1.0-SNAPSHOT"
@@ -13,6 +11,7 @@ initialCommands in console += "import com.fivebyfive.fitness.strategy._;"
 initialCommands in console += "import com.fivebyfive.fitness.application._;"
 
 libraryDependencies ++= Seq(
+  "commons-io" % "commons-io" % "2.4",
   "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test",
   "com.github.nscala-time" %% "nscala-time" % "2.6.0",
   "com.nrinaudo" %% "tabulate" % "0.1.7",

@@ -2,6 +2,7 @@ package com.fivebyfive.fitness.model
 
 import com.fivebyfive.fitness.UnitSpec
 import com.fivebyfive.fitness.model.Exercise._
+import org.apache.commons.io.IOUtils
 import org.joda.time.DateTime
 
 class HistorySpec extends UnitSpec {
@@ -10,8 +11,8 @@ class HistorySpec extends UnitSpec {
   describe("History") {
     describe("fromCSV") {
       it("imports workout history") {
-        val rawData = getClass.getResource("/fixtures/twoWorkouts.csv")
-        val history = History.fromCSV(rawData)
+        val rawData = getClass.getResourceAsStream("/fixtures/twoWorkouts.csv")
+        val history = History.fromCSV(IOUtils.toByteArray(rawData))
 
         history.workouts.size shouldBe 2
 
