@@ -1,8 +1,8 @@
 name := "fitness-core"
 organization := "com.fivebyfive"
-version := "1.0-SNAPSHOT"
 
 scalaVersion := "2.11.7"
+scalacOptions ++= Seq("-deprecation", "-feature")
 
 lazy val core = project in file(".")
 
@@ -10,9 +10,8 @@ initialCommands in console := "import com.fivebyfive.fitness.model._;"
 initialCommands in console += "import com.fivebyfive.fitness.strategy._;"
 initialCommands in console += "import com.fivebyfive.fitness.application._;"
 
-publishTo := None
-
-import ReleaseTransformations._
+import sbtrelease.ReleasePlugin.autoImport._
+import sbtrelease.ReleaseStateTransformations._
 
 releaseProcess := Seq[ReleaseStep](
   checkSnapshotDependencies,              // : ReleaseStep
