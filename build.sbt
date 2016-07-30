@@ -12,21 +12,6 @@ initialCommands in console += "import com.fivebyfive.fitness.application._;"
 
 publishTo := Some(Resolver.file("file",  new File(Path.userHome.absolutePath+"/.m2/repository")))
 
-//import sbtrelease.ReleasePlugin.autoImport._
-//import sbtrelease.ReleaseStateTransformations._
-//
-//releaseProcess := Seq[ReleaseStep](
-//  checkSnapshotDependencies,              // : ReleaseStep
-//  inquireVersions,                        // : ReleaseStep
-//  runTest,                                // : ReleaseStep
-//  setReleaseVersion,                      // : ReleaseStep
-//  commitReleaseVersion,                   // : ReleaseStep, performs the initial git checks
-//  tagRelease,                             // : ReleaseStep
-//  setNextVersion,                         // : ReleaseStep
-//  commitNextVersion,                      // : ReleaseStep
-//  pushChanges                             // : ReleaseStep, also checks that an upstream branch is properly configured
-//)
-
 libraryDependencies ++= Seq(
   "commons-io" % "commons-io" % "2.4",
   "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test",
