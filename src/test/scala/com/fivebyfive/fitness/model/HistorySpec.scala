@@ -32,6 +32,13 @@ class HistorySpec extends UnitSpec {
           Routine(SitUps, Seq(RepSet(35, None), RepSet(35, None), RepSet(35, None)))
         )
       }
+
+      it("doesn't break on this file") {
+        val rawData = getClass.getResourceAsStream("/fixtures/error.csv")
+        val history = History.fromCSV(IOUtils.toByteArray(rawData))
+
+        history.workouts.size shouldBe 7
+      }
     }
 
     describe("byExercise") {

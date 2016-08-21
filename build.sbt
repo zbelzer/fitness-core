@@ -1,7 +1,7 @@
 name := "fitness-core"
 organization := "com.fivebyfive"
 
-scalaVersion := "2.11.7"
+scalaVersion := "2.11.8"
 scalacOptions ++= Seq("-deprecation", "-feature")
 
 lazy val core = project in file(".")
@@ -16,7 +16,8 @@ libraryDependencies ++= Seq(
   "commons-io" % "commons-io" % "2.4",
   "org.scalatest" % "scalatest_2.11" % "2.2.4" % "test",
   "com.github.nscala-time" %% "nscala-time" % "2.6.0",
-  "com.nrinaudo" %% "tabulate" % "0.1.7",
+  "com.nrinaudo" %% "kantan.csv-generic" % "0.1.13",
+  "com.nrinaudo" %% "kantan.csv-joda-time" % "0.1.13",
   "org.apache.commons" % "commons-math3" % "3.3",
   "com.github.wookietreiber" %% "scala-chart" % "latest.integration",
   "com.beachape" %% "enumeratum" % "1.3.7",

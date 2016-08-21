@@ -1,9 +1,9 @@
 package com.fivebyfive.fitness.model
 
 import com.github.nscala_time.time.OrderingImplicits.DateTimeOrdering
-import org.joda.time.DateTime
-import tabulate._
-import tabulate.ops._
+import kantan.csv.RowDecoder
+import kantan.csv.ops._
+import org.joda.time.DateTime // case class decoder derivation
 
 case class History(workouts: Iterable[Workout]) {
   val sortedWorkouts = workouts.toSeq.sortBy(_.date)
@@ -51,7 +51,7 @@ object History {
 
   def fromCSV(data: Array[Byte]): History = {
     case class Row(date: String, exerciseName: String, reps: Int, weight: Option[Double] = None)
-    implicit val rowDecoder = RowDecoder.decoder4(Row.apply)(0, 1, 2, 3)
+    implicit val rowDecoder = RowDecoder.decoder(0, 1, 2, 3)(Row.apply)
 
     val results = data.asCsvReader[Row](',', header = true).map { w => w.get }.toList
 
