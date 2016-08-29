@@ -13,6 +13,8 @@ sealed abstract class Exercise(
 ) extends EnumEntry {
   val prettyName = Inflector.titleize(getClass.getSimpleName.replace("$", ""))
 
+  val inversion: Option[Exercise] = None
+
   val muscleGroup: MuscleGroup = {
     muscleMap.groupBy(_._1.group).map { case (group, thing) =>
       (group, thing.values.sum)
@@ -330,7 +332,7 @@ object Exercise extends Enum[Exercise] {
     )
   )
 
-  case object StandingMiliartyPress extends Exercise(
+  case object StandingMilitaryPress extends Exercise(
     Map(
       DeltoidAnterior -> 0.64,
       PectoralisMajor -> 0.06,
@@ -423,12 +425,12 @@ object Exercise extends Enum[Exercise] {
     val MAX_PERMUTATIONS = 1000
 
     val options =
-      Exercise.values.permutations.take(MAX_PERMUTATIONS).map { randomExercises =>
+      Exercise.randomPermutations(MAX_PERMUTATIONS, seed = None).map { randomExercises =>
         var currentExercises = Set[Exercise]()
 
         def missingMuscles(exercise: Exercise): Boolean = {
           val mappedMuscles = currentExercises.flatMap(_.muscleMap.keys)
-          (Muscle.values.toSet diff mappedMuscles).nonEmpty
+          (muscles diff mappedMuscles).nonEmpty
         }
 
         randomExercises.takeWhile(missingMuscles).foreach { exercise =>
@@ -438,6 +440,6 @@ object Exercise extends Enum[Exercise] {
         currentExercises
       }
 
-    options.minBy(_.size)
+    options.toList.minBy(_.size)
   }
 }

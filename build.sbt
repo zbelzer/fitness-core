@@ -22,5 +22,6 @@ libraryDependencies ++= Seq(
   "com.github.wookietreiber" %% "scala-chart" % "latest.integration",
   "com.beachape" %% "enumeratum" % "1.3.7",
   "com.github.nscala-time" %% "nscala-time" % "2.6.0",
-  "io.backchat.inflector" %% "scala-inflector" % "1.3.5"
+  "io.backchat.inflector" %% "scala-inflector" % "1.3.5",
+  "com.typesafe.scala-logging" %% "scala-logging" % "3.4.0"
 )

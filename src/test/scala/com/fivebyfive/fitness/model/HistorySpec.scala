@@ -33,12 +33,6 @@ class HistorySpec extends UnitSpec {
         )
       }
 
-      it("doesn't break on this file") {
-        val rawData = getClass.getResourceAsStream("/fixtures/error.csv")
-        val history = History.fromCSV(IOUtils.toByteArray(rawData))
-
-        history.workouts.size shouldBe 7
-      }
     }
 
     describe("byExercise") {
