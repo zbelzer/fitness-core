@@ -1,8 +1,10 @@
 package com.fivebyfive.fitness.model
 
+import com.fivebyfive.fitness.application.GenerateActorWorkoutApp.getClass
 import com.github.nscala_time.time.OrderingImplicits.DateTimeOrdering
 import kantan.csv.RowDecoder
 import kantan.csv.ops._
+import org.apache.commons.io.IOUtils
 import org.joda.time.DateTime // case class decoder derivation
 
 case class History(workouts: Iterable[Workout]) {
@@ -48,6 +50,11 @@ case class History(workouts: Iterable[Workout]) {
 
 object History {
   implicit val codec = scala.io.Codec.ISO8859
+
+  def fromResource(name: String): History = {
+    val stream = getClass.getResourceAsStream(name)
+    History.fromCSV(IOUtils.toByteArray(stream))
+  }
 
   def fromCSV(data: Array[Byte]): History = {
     case class Row(date: String, exerciseName: String, reps: Int, weight: Option[Double] = None)

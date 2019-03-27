@@ -1,6 +1,6 @@
 package com.fivebyfive.fitness.strategy.routine
 
-import com.fivebyfive.fitness.UnitSpec
+import com.fivebyfive.fitness.BaseSpec
 import com.fivebyfive.fitness.model.Exercise.BicepCurls
 import com.fivebyfive.fitness.model.{RepSet, Routine}
 
@@ -9,7 +9,7 @@ class TestBuilder extends RoutineBuilder {
   val numReps = 5
 }
 
-class RoutineBuilderSpec extends UnitSpec {
+class RoutineBuilderSpec extends BaseSpec {
   describe("RoutineBuilder") {
     describe("buildRoutine") {
       it("fits desired volume into given sets and reps") {

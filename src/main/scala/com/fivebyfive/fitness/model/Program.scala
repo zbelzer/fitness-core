@@ -1,15 +1,15 @@
 package com.fivebyfive.fitness.model
 
 import com.fivebyfive.fitness.strategy.routine.{HypertrophicBuilder, RoutineBuilder}
-import com.fivebyfive.fitness.strategy.scoring.algorithms.{EvenGroupDistribution, IgnoreExercises, RepeatedExercises}
-import com.fivebyfive.fitness.strategy.scoring.{Scoring, ScoringAlgorithm}
+import com.fivebyfive.fitness.strategy.scoring.Scoring
 import com.fivebyfive.fitness.strategy.volume.VolumePredictor
 import org.joda.time.DateTime
 
-case class Program(scoring: Scoring, goal: Option[Goal] = None) {
-  val MAX_PERMUTATIONS = 100
-  val maxWorkoutDuration = 60 * 30
-
+case class Program(
+    scoring: Scoring,
+    goal: Option[Goal] = None,
+    settings: WorkoutSettings
+) {
   def nextWorkout(
       date: DateTime,
       history: History,
@@ -30,7 +30,7 @@ case class Program(scoring: Scoring, goal: Option[Goal] = None) {
         val nextRoutine = routineBuilder.buildRoutine(latestRoutineForExercise, nextVolume)
         currentRoutines :+= nextRoutine
 
-        if (currentRoutines.map(_.duration).sum > maxWorkoutDuration) {
+        if (currentRoutines.map(_.duration).sum > settings.targetDuration.toMinutes) {
           return Some(Workout(currentRoutines, date))
         }
       }
@@ -42,7 +42,7 @@ case class Program(scoring: Scoring, goal: Option[Goal] = None) {
       scoring.run(history, workout)
     }
 
-    val exercises = Exercise.randomPermutations(MAX_PERMUTATIONS, seed)
+    val exercises = Exercise.randomPermutations(settings.iterations, seed)
 
     val scoredWorkouts =
       exercises

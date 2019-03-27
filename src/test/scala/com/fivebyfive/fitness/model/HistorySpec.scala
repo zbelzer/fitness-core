@@ -1,11 +1,11 @@
 package com.fivebyfive.fitness.model
 
-import com.fivebyfive.fitness.UnitSpec
+import com.fivebyfive.fitness.BaseSpec
 import com.fivebyfive.fitness.model.Exercise._
 import org.apache.commons.io.IOUtils
 import org.joda.time.DateTime
 
-class HistorySpec extends UnitSpec {
+class HistorySpec extends BaseSpec {
   val history = History(Seq(workout1, workout2))
 
   describe("History") {

@@ -1,11 +1,11 @@
 package com.fivebyfive.fitness.model
 
-import com.fivebyfive.fitness.UnitSpec
+import com.fivebyfive.fitness.BaseSpec
 import com.fivebyfive.fitness.model.Exercise._
 import com.fivebyfive.fitness.model.Muscle._
 import org.joda.time.DateTime
 
-class WorkoutSpec extends UnitSpec {
+class WorkoutSpec extends BaseSpec {
   describe("Workout") {
     describe("volumeByMuscle") {
       it("sums volumes by muscle from individual routines") {

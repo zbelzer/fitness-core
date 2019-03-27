@@ -23,5 +23,7 @@ libraryDependencies ++= Seq(
   "com.beachape" %% "enumeratum" % "1.3.7",
   "com.github.nscala-time" %% "nscala-time" % "2.6.0",
   "io.backchat.inflector" %% "scala-inflector" % "1.3.5",
-  "com.typesafe.scala-logging" %% "scala-logging" % "3.4.0"
+  "com.typesafe.scala-logging" %% "scala-logging" % "3.4.0",
+  "com.typesafe.akka" %% "akka-actor" % "2.5.3",
+  "com.typesafe.akka" %% "akka-testkit" % "2.5.3" % Test
 )

@@ -1,12 +1,12 @@
 package com.fivebyfive.fitness.model
 
-import com.fivebyfive.fitness.UnitSpec
+import com.fivebyfive.fitness.BaseSpec
 import com.fivebyfive.fitness.strategy.scoring.Scoring
 import com.fivebyfive.fitness.strategy.scoring.algorithms.{EvenGroupDistribution, IgnoreExercises, RepeatedExercises}
 import org.apache.commons.io.IOUtils
 import org.joda.time.DateTime
 
-class ProgramSpec extends UnitSpec {
+class ProgramSpec extends BaseSpec {
 
   val scoring = Scoring(Seq(
     EvenGroupDistribution,
@@ -14,7 +14,7 @@ class ProgramSpec extends UnitSpec {
     IgnoreExercises(Nil)
   ))
 
-  val program = Program(scoring = scoring)
+  val program = Program(scoring = scoring, settings = WorkoutSettings.default)
   val today = new DateTime("2016-08-30")
 
   describe("Program") {

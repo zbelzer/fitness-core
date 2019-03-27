@@ -1,5 +1,17 @@
 package com.fivebyfive.fitness.model
 
+import scala.collection.immutable.ListMap
+
+object Routine {
+  def apply(exercise: Exercise, sets: ListMap[Int, Int]): Routine = {
+    new Routine(exercise, sets.map { case(r, w) => RepSet(r, Some(w)) }.toSeq )
+  }
+
+//  def apply(exercise: Exercise, sets: Seq[Int]): Routine = {
+//    new Routine(exercise, sets.map(RepSet(_, None)))
+//  }
+}
+
 case class Routine(exercise: Exercise, sets: Seq[RepSet]) extends RoutineLike {
   val TIME_PER_REP = 4
   val REST_INTERVAL = 60

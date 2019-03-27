@@ -1,12 +1,12 @@
 package com.fivebyfive.fitness.strategy.scoring.algorithms
 
-import com.fivebyfive.fitness.UnitSpec
+import com.fivebyfive.fitness.BaseSpec
 import com.fivebyfive.fitness.model.Exercise._
 import com.fivebyfive.fitness.model.{History, RepSet, Routine, Workout}
 import com.fivebyfive.fitness.strategy.scoring.Score
 import org.joda.time.DateTime
 
-class RepeatedExercisesSpec extends UnitSpec {
+class RepeatedExercisesSpec extends BaseSpec {
   describe("RepeatedExercises") {
     describe("score") {
       it("scores a completely unique workout with 1") {

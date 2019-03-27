@@ -4,9 +4,28 @@ import java.util.concurrent.TimeUnit
 
 import org.joda.time.DateTime
 
+import scala.collection.immutable.ListMap
 import scala.concurrent.duration.Duration
 
-case class Workout(routines: Seq[Routine], date: DateTime) extends WorkoutLike {
+object Workout {
+  def apply(routines: Iterable[Routine], date: String): Workout = {
+    new Workout(routines, new DateTime(date))
+  }
+
+  def apply(routines: ListMap[Exercise, ListMap[Int, Int]], date: String): Workout = {
+    new Workout(
+      routines.map { case (e, r) => Routine(e, r)}
+      , new DateTime(date))
+  }
+
+//  def apply(routines: ListMap[Exercise, Seq[Int]], date: String): Workout = {
+//    new Workout(
+//      routines.map { case (e, r) => Routine(e, r)}
+//      , new DateTime(date))
+//  }
+}
+
+case class Workout(routines: Iterable[Routine], date: DateTime) extends WorkoutLike {
   lazy val exercises = routines.map(_.exercise)
 
   lazy val duration: Duration = {

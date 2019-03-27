@@ -1,13 +1,13 @@
 package com.fivebyfive.fitness.strategy.scoring.algorithms
 
-import com.fivebyfive.fitness.UnitSpec
+import com.fivebyfive.fitness.BaseSpec
 import com.fivebyfive.fitness.model.Exercise.{BicepCurls, DragCurls, TricepExtensions}
 import com.fivebyfive.fitness.model.Muscle.{BicepsBrachii, TricepsBrachii}
 import com.fivebyfive.fitness.model.{History, RepSet, Routine, Workout}
 import com.fivebyfive.fitness.strategy.scoring.Score
 import org.joda.time.DateTime
 
-class IgnoreMusclesSpec extends UnitSpec {
+class IgnoreMusclesSpec extends BaseSpec {
   describe("IgnoredMuscles") {
     val history = History(Seq())
 

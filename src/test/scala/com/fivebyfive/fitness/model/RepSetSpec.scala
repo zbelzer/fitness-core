@@ -1,8 +1,8 @@
 package com.fivebyfive.fitness.model
 
-import com.fivebyfive.fitness.UnitSpec
+import com.fivebyfive.fitness.BaseSpec
 
-class RepSetSpec extends UnitSpec {
+class RepSetSpec extends BaseSpec {
   describe("RepSet") {
     describe("inverted") {
       it("is true when weight is given and less than 0") {

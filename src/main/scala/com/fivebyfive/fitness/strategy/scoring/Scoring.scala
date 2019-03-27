@@ -10,6 +10,6 @@ case class Scoring(algorithms: Seq[ScoringAlgorithm]) {
       alg.score(history, workout)
     }
 
-    ScoredWorkout(workout, scores)
+    ScoredWorkout(workout, scores.toSet)
   }
 }

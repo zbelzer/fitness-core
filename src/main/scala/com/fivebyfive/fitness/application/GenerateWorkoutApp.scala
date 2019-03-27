@@ -8,7 +8,7 @@ import com.fivebyfive.fitness.strategy.scoring.algorithms.{EvenGroupDistribution
 import org.joda.time.DateTime
 import org.apache.commons.io.IOUtils
 
-object GenerateWorkout extends App {
+object GenerateWorkoutApp extends App {
   println("Loading history from CSV")
 
   val stream = getClass.getResourceAsStream("/belzer.csv")
@@ -23,7 +23,7 @@ object GenerateWorkout extends App {
     IgnoreExercises(Nil)
   ))
 
-  val program = Program(scoring = scoring)
+  val program = Program(scoring = scoring, settings = WorkoutSettings.default)
   val today = DateTime.now
   val workout =
     program.nextWorkout(today, history).getOrElse {

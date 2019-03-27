@@ -1,10 +1,10 @@
 package com.fivebyfive.fitness.strategy.volume
 
-import com.fivebyfive.fitness.UnitSpec
+import com.fivebyfive.fitness.BaseSpec
 import com.fivebyfive.fitness.model.Exercise.BicepCurls
 import org.joda.time.DateTime
 
-class VolumePredictorSpec extends UnitSpec {
+class VolumePredictorSpec extends BaseSpec {
   describe("VolumePredictor") {
     describe("next") {
       it("provides next value by linear progression") {

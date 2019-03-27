@@ -1,9 +1,9 @@
 package com.fivebyfive.fitness.model
 
-import com.fivebyfive.fitness.UnitSpec
+import com.fivebyfive.fitness.BaseSpec
 import com.fivebyfive.fitness.model.Exercise.{SitUps, LegExtensions, BicepCurls}
 
-class WorkoutPlanSpec extends UnitSpec {
+class WorkoutPlanSpec extends BaseSpec {
   describe("WorkoutPlan") {
     it("imports a sample workout") {
       val rawData = getClass.getResource("/fixtures/sample.csv")

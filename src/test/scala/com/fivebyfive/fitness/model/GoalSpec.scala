@@ -1,8 +1,8 @@
 package com.fivebyfive.fitness.model
 
-import com.fivebyfive.fitness.UnitSpec
+import com.fivebyfive.fitness.BaseSpec
 
-class GoalSpec extends UnitSpec {
+class GoalSpec extends BaseSpec {
   describe("Goal") {
     describe("date") {
       it("returns the date from the workout") {

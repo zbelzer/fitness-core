@@ -1,10 +1,10 @@
 package com.fivebyfive.fitness.model
 
-import com.fivebyfive.fitness.UnitSpec
+import com.fivebyfive.fitness.BaseSpec
 import com.fivebyfive.fitness.model.Exercise._
 import com.fivebyfive.fitness.model.Muscle._
 
-class RoutineSpec extends UnitSpec {
+class RoutineSpec extends BaseSpec {
   describe("Routine") {
     describe("totalVolume") {
       it("calculates the sum of the product of reps and sets") {

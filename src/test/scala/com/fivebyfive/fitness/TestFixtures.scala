@@ -1,11 +1,12 @@
 package com.fivebyfive.fitness
 
-import com.fivebyfive.fitness.model.Exercise.{SitUps, LegExtensions, BicepCurls}
-import com.fivebyfive.fitness.model.{RepSet, Routine, Workout}
+import com.fivebyfive.fitness.model.Exercise.{BicepCurls, LegExtensions, SitUps}
+import com.fivebyfive.fitness.model.{History, RepSet, Routine, Workout}
 import org.joda.time.DateTime
-import org.scalatest._
 
-abstract class UnitSpec extends FunSpec with Matchers with BeforeAndAfter {
+trait TestFixtures {
+  val history1 = History.fromResource("/belzer.csv")
+
   val workout1 =
     Workout(Seq(
       Routine(BicepCurls, Seq(RepSet(8, Some(10)), RepSet(8, Some(10)))),
@@ -33,5 +34,6 @@ abstract class UnitSpec extends FunSpec with Matchers with BeforeAndAfter {
       Routine(LegExtensions, Seq(RepSet(10, Some(40)), RepSet(10, Some(40)))),
       Routine(SitUps, Seq(RepSet(30), RepSet(30), RepSet(30)))
     ), new DateTime("2016-01-30"))
+
 
 }
